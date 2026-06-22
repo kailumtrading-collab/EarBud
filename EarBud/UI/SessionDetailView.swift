@@ -7,6 +7,8 @@ struct SessionDetailView: View {
 
     @State private var isAnalyzing = false
     @State private var statusMessage: String?
+    @State private var eventBeingScheduled: DetectedEvent?
+    @State private var pickedDate = Date()
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -82,6 +84,31 @@ struct SessionDetailView: View {
             }
         }
         .frame(minWidth: 420, maxWidth: .infinity, minHeight: 360, maxHeight: .infinity)
+        .sheet(item: $eventBeingScheduled) { event in
+            schedulingSheet(for: event)
+        }
+    }
+
+    private func schedulingSheet(for event: DetectedEvent) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Schedule \"\(event.title)\"").font(.headline)
+            Text("This was discussed but no specific time was agreed on — pick one to add it to Calendar.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            DatePicker("When", selection: $pickedDate)
+                .datePickerStyle(.stepperField)
+            HStack {
+                Spacer()
+                Button("Cancel") { eventBeingScheduled = nil }
+                Button("Add to Calendar") {
+                    eventBeingScheduled = nil
+                    addToCalendar(event, startDate: pickedDate)
+                }
+                .keyboardShortcut(.defaultAction)
+            }
+        }
+        .padding(16)
+        .frame(width: 320)
     }
 
     private func sectionHeader(_ title: String) -> some View {
@@ -146,13 +173,23 @@ struct SessionDetailView: View {
                     Text(date.formatted(date: .abbreviated, time: .shortened))
                         .font(.caption)
                         .foregroundStyle(.secondary)
+                } else {
+                    Text("Discussed — no time agreed yet")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
             Spacer()
-            Button(event.addedToCalendar ? "Added ✓" : "Add to Calendar") {
-                addToCalendar(event)
+            if event.addedToCalendar {
+                Text("Added ✓").foregroundStyle(.secondary)
+            } else if let date = event.date {
+                Button("Add to Calendar") { addToCalendar(event, startDate: date) }
+            } else {
+                Button("Schedule…") {
+                    pickedDate = Date()
+                    eventBeingScheduled = event
+                }
             }
-            .disabled(event.addedToCalendar)
         }
     }
 
@@ -182,10 +219,10 @@ struct SessionDetailView: View {
         }
     }
 
-    private func addToCalendar(_ event: DetectedEvent) {
+    private func addToCalendar(_ event: DetectedEvent, startDate: Date) {
         Task {
             do {
-                guard try await CalendarWriter.addEvent(for: event) else {
+                guard try await CalendarWriter.addEvent(for: event, startDate: startDate) else {
                     statusMessage = "Calendar access was denied."
                     return
                 }

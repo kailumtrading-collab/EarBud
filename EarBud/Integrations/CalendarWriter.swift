@@ -11,15 +11,18 @@ enum CalendarWriter {
         try await store.requestFullAccessToReminders()
     }
 
+    /// `startDate` must be supplied explicitly — when a conversation only
+    /// mentioned a meeting without agreeing on a time, the caller should
+    /// prompt the person to pick one rather than us guessing an arbitrary
+    /// fallback time.
     @discardableResult
-    static func addEvent(for detected: DetectedEvent) async throws -> Bool {
+    static func addEvent(for detected: DetectedEvent, startDate: Date) async throws -> Bool {
         guard try await requestCalendarAccess() else { return false }
         let event = EKEvent(eventStore: store)
         event.title = detected.title
         event.notes = detected.notes
-        let start = detected.date ?? Date().addingTimeInterval(3600)
-        event.startDate = start
-        event.endDate = start.addingTimeInterval(3600)
+        event.startDate = startDate
+        event.endDate = startDate.addingTimeInterval(3600)
         event.calendar = store.defaultCalendarForNewEvents
         try store.save(event, span: .thisEvent)
         return true

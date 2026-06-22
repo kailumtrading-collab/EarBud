@@ -9,7 +9,13 @@ struct ConversationAnalysis: Equatable {
     @Guide(description: "Every speaker turn from the transcript, in the original order, classified as casual small talk or important business/actionable information")
     var classifiedSegments: [ClassifiedSegmentDraft]
 
-    @Guide(description: "Specific meetings, events, or deadlines mentioned with a date that can be resolved to an absolute date")
+    @Guide(description: """
+    Future meetings, calls, or deadlines that were actually proposed or agreed to during \
+    this conversation — never something hypothetical, purely past, or only tangentially \
+    mentioned. Include one even if no specific time was settled on (e.g. "let's catch up \
+    soon", "we should find time next week") so the person can be prompted to pick a time; \
+    in that case leave isoDateTime out entirely rather than guessing one.
+    """)
     var detectedEvents: [DetectedEventDraft]
 
     @Guide(description: "Concrete action items or follow-ups someone committed to during the conversation")
@@ -26,8 +32,12 @@ struct ClassifiedSegmentDraft: Equatable {
 struct DetectedEventDraft: Equatable {
     var title: String
 
-    @Guide(description: "Resolved absolute date and time in ISO 8601, e.g. 2026-06-28T15:00:00")
-    var isoDateTime: String
+    @Guide(description: """
+    Resolved absolute date and time in ISO 8601, e.g. 2026-06-28T15:00:00 — only if a \
+    specific date or time was actually agreed on in the conversation. Omit this entirely \
+    if the meeting was discussed but no concrete time was settled.
+    """)
+    var isoDateTime: String?
 
     var notes: String?
 }
@@ -68,7 +78,9 @@ enum ConversationAnalyzer {
         (weather, food, weekend plans, pleasantries) from business-relevant or actionable content \
         (deadlines, decisions, scheduling, money, contracts, deliverables). Resolve relative dates \
         like "next Tuesday" or "tomorrow" against today's date: \(today). Classify every speaker \
-        turn from the transcript, preserving the original order.
+        turn from the transcript, preserving the original order. Only report a detected event if \
+        a future meeting or deadline was genuinely proposed or agreed to in this transcript — do \
+        not invent or infer ones that weren't actually discussed.
         """
 
         let modelSession = LanguageModelSession(instructions: instructions)
@@ -83,7 +95,11 @@ enum ConversationAnalyzer {
         session.summary = analysis.summary
         session.segments = applyCategories(to: session.segments, from: analysis.classifiedSegments)
         session.detectedEvents = analysis.detectedEvents.map {
-            DetectedEvent(title: $0.title, date: isoDateFormatter.date(from: $0.isoDateTime), notes: $0.notes)
+            DetectedEvent(
+                title: $0.title,
+                date: $0.isoDateTime.flatMap(isoDateFormatter.date(from:)),
+                notes: $0.notes
+            )
         }
         session.actionItems = analysis.actionItems.map {
             ActionItem(description: $0.description, owner: $0.owner)
