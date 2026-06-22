@@ -1,0 +1,47 @@
+name: EarBud
+options:
+  bundleIdPrefix: com.kailum.earbud
+  deploymentTarget:
+    macOS: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
+    ENABLE_HARDENED_RUNTIME: NO
+    CODE_SIGN_STYLE: Automatic
+
+packages:
+  FluidAudio:
+    url: https://github.com/FluidInference/FluidAudio
+    from: 0.1.0
+
+targets:
+  EarBud:
+    type: application
+    platform: macOS
+    sources:
+      - path: EarBud
+    dependencies:
+      - package: FluidAudio
+    info:
+      path: EarBud/Info.plist
+      properties:
+        LSUIElement: true
+        NSMicrophoneUsageDescription: "EarBud listens to in-person conversations so it can transcribe them."
+        NSSpeechRecognitionUsageDescription: "EarBud transcribes conversation audio on-device."
+        NSCalendarsFullAccessUsageDescription: "EarBud can add detected meetings and events to your Calendar."
+        NSRemindersFullAccessUsageDescription: "EarBud can add detected action items to Reminders."
+        NSAppleEventsUsageDescription: "EarBud saves conversation summaries to Notes."
+        NSScreenCaptureUsageDescription: "EarBud captures system audio so it can hear the other side of video/voice calls."
+        NSAudioCaptureUsageDescription: "EarBud captures system audio so it can hear the other side of video/voice calls."
+        CFBundleIconName: AppIcon
+    entitlements:
+      path: EarBud/EarBud.entitlements
+      properties:
+        com.apple.security.app-sandbox: false
+    settings:
+      base:
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        PRODUCT_BUNDLE_IDENTIFIER: com.kailum.earbud
+        GENERATE_INFOPLIST_FILE: false
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon

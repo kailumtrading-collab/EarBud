@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		003D4B809762E0B4C9E1FC4C /* NotesWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C43A7AAEF1A191B0C8BE16 /* NotesWriter.swift */; };
+		0DC0DAC71CDDD343C25F07CC /* DetectedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9069A9CC31E9243A440D46 /* DetectedEvent.swift */; };
+		10BD2814566BF8997C30273E /* TranscriptSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E815E299BDCF449DE37569D4 /* TranscriptSegment.swift */; };
+		12F080C4E228FB4261378BB7 /* ConversationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2208C5AA7A26AA0481722 /* ConversationSession.swift */; };
+		1E2AEA8D7116E9B5EFFF2D2F /* AudioMixer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A2EFDBB55CC25B089AB178 /* AudioMixer.swift */; };
+		290B56EE34384AF655F99202 /* SpeakerDiarizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAC61E70CB11D6B3753A1C4 /* SpeakerDiarizer.swift */; };
+		35CA7D86A39D9D395CD2A148 /* SessionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */; };
+		3BC6EADA90BE3CA2C9824E65 /* SystemAudioTapEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D706EDE693458408FC59D7 /* SystemAudioTapEngine.swift */; };
+		3E080E02319779C5AE665FF9 /* FluidAudio in Frameworks */ = {isa = PBXBuildFile; productRef = D7C7BCFC71E852BF45DFC2BD /* FluidAudio */; };
+		5E035947B6A794C24A484874 /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31C8F93A9CD55F69CBBAB6A3 /* Speaker.swift */; };
+		612D52B87F72C83DA2B2EFE9 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366A3F6EB88D9B4B99404FA2 /* SessionStore.swift */; };
+		6950E1490A1400F498342378 /* AudioCaptureEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353681BD920EC25D09E2D7D4 /* AudioCaptureEngine.swift */; };
+		71C35DBEB13E52501DD0345B /* ConversationPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDBE9E2917C3D8BFE2875F /* ConversationPipeline.swift */; };
+		7C29F6D678AE621029233E55 /* ConversationAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B40A625D2D43F639CA543 /* ConversationAnalyzer.swift */; };
+		835E067E5054881C6DABB646 /* EarBudApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75624AD842D36F736730A1B4 /* EarBudApp.swift */; };
+		A3E5F5B2D7A748CF6F87D834 /* SpeakerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3FA441BB6E4D7E14051C4 /* SpeakerColor.swift */; };
+		A754BA24CD241B40AFBC32D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 400415EFCB341CBCDF4C0AF1 /* Assets.xcassets */; };
+		AB2E763131019FAF38798CD7 /* SpeakerNameDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747593E0151DE55EF1D804FA /* SpeakerNameDetector.swift */; };
+		B8F864B716E9DFA19C046750 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E58FDB09B43054BE26C8C2D /* UserProfile.swift */; };
+		C0B308A767A6DF339B8B12C5 /* LiveTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C27B384FA780F9A58D337E /* LiveTranscriber.swift */; };
+		D4FE5E753CC9D632C4A52D0B /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DAE9CF6777CB3ACDE4D1F /* MenuBarContentView.swift */; };
+		E79A566D4A492C7451C5CDA5 /* CalendarWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */; };
+		E7F477A6C4B4DE709F6D0D1D /* ActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D336BE6E1656542F06F5EB /* ActionItem.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		19815A70FBCA41C29B2DFEF7 /* EarBud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarBud.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		26EBB6F91D3D0612B49D08FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2CDDBE9E2917C3D8BFE2875F /* ConversationPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPipeline.swift; sourceTree = "<group>"; };
+		31C8F93A9CD55F69CBBAB6A3 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
+		34F2208C5AA7A26AA0481722 /* ConversationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSession.swift; sourceTree = "<group>"; };
+		353681BD920EC25D09E2D7D4 /* AudioCaptureEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioCaptureEngine.swift; sourceTree = "<group>"; };
+		366A3F6EB88D9B4B99404FA2 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		3EC3FA441BB6E4D7E14051C4 /* SpeakerColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerColor.swift; sourceTree = "<group>"; };
+		400415EFCB341CBCDF4C0AF1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		57C27B384FA780F9A58D337E /* LiveTranscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriber.swift; sourceTree = "<group>"; };
+		5F9069A9CC31E9243A440D46 /* DetectedEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectedEvent.swift; sourceTree = "<group>"; };
+		747593E0151DE55EF1D804FA /* SpeakerNameDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerNameDetector.swift; sourceTree = "<group>"; };
+		75624AD842D36F736730A1B4 /* EarBudApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarBudApp.swift; sourceTree = "<group>"; };
+		79D336BE6E1656542F06F5EB /* ActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionItem.swift; sourceTree = "<group>"; };
+		7AAC61E70CB11D6B3753A1C4 /* SpeakerDiarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerDiarizer.swift; sourceTree = "<group>"; };
+		7E58FDB09B43054BE26C8C2D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		853DAE9CF6777CB3ACDE4D1F /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
+		88510C26234A5B3795FD82DD /* EarBud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarBud.entitlements; sourceTree = "<group>"; };
+		8E3B40A625D2D43F639CA543 /* ConversationAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAnalyzer.swift; sourceTree = "<group>"; };
+		A9C43A7AAEF1A191B0C8BE16 /* NotesWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWriter.swift; sourceTree = "<group>"; };
+		BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
+		C4D706EDE693458408FC59D7 /* SystemAudioTapEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAudioTapEngine.swift; sourceTree = "<group>"; };
+		D8A2EFDBB55CC25B089AB178 /* AudioMixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMixer.swift; sourceTree = "<group>"; };
+		E815E299BDCF449DE37569D4 /* TranscriptSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptSegment.swift; sourceTree = "<group>"; };
+		FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWriter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9035A9ABA1964ACB0A78839 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E080E02319779C5AE665FF9 /* FluidAudio in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		141F570542AB7653623F1FF1 /* Diarization */ = {
+			isa = PBXGroup;
+			children = (
+				7AAC61E70CB11D6B3753A1C4 /* SpeakerDiarizer.swift */,
+			);
+			path = Diarization;
+			sourceTree = "<group>";
+		};
+		38DE6979927120F47D72CE7D /* Intelligence */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B40A625D2D43F639CA543 /* ConversationAnalyzer.swift */,
+				747593E0151DE55EF1D804FA /* SpeakerNameDetector.swift */,
+			);
+			path = Intelligence;
+			sourceTree = "<group>";
+		};
+		59F91210DF4EA65164E52539 /* EarBud */ = {
+			isa = PBXGroup;
+			children = (
+				400415EFCB341CBCDF4C0AF1 /* Assets.xcassets */,
+				88510C26234A5B3795FD82DD /* EarBud.entitlements */,
+				75624AD842D36F736730A1B4 /* EarBudApp.swift */,
+				26EBB6F91D3D0612B49D08FA /* Info.plist */,
+				69236EC5227CC5D28B860D75 /* Audio */,
+				141F570542AB7653623F1FF1 /* Diarization */,
+				B4DEC91056E5A5CF9BE6982F /* Integrations */,
+				38DE6979927120F47D72CE7D /* Intelligence */,
+				CE29E51470CFE27FB0D1D7A7 /* Models */,
+				F5798B8AF737C9CFA9E86A82 /* Persistence */,
+				E5EA1492460E21BED1D59C22 /* Pipeline */,
+				CBDCC670DCDE40343E2D9EB2 /* Transcription */,
+				D0EF0DE6B362456094F259EB /* UI */,
+			);
+			path = EarBud;
+			sourceTree = "<group>";
+		};
+		69236EC5227CC5D28B860D75 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				353681BD920EC25D09E2D7D4 /* AudioCaptureEngine.swift */,
+				D8A2EFDBB55CC25B089AB178 /* AudioMixer.swift */,
+				C4D706EDE693458408FC59D7 /* SystemAudioTapEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		856004BEF716F6C9E30831CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19815A70FBCA41C29B2DFEF7 /* EarBud.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B4DEC91056E5A5CF9BE6982F /* Integrations */ = {
+			isa = PBXGroup;
+			children = (
+				FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */,
+				A9C43A7AAEF1A191B0C8BE16 /* NotesWriter.swift */,
+			);
+			path = Integrations;
+			sourceTree = "<group>";
+		};
+		CBDCC670DCDE40343E2D9EB2 /* Transcription */ = {
+			isa = PBXGroup;
+			children = (
+				57C27B384FA780F9A58D337E /* LiveTranscriber.swift */,
+			);
+			path = Transcription;
+			sourceTree = "<group>";
+		};
+		CE29E51470CFE27FB0D1D7A7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				79D336BE6E1656542F06F5EB /* ActionItem.swift */,
+				34F2208C5AA7A26AA0481722 /* ConversationSession.swift */,
+				5F9069A9CC31E9243A440D46 /* DetectedEvent.swift */,
+				31C8F93A9CD55F69CBBAB6A3 /* Speaker.swift */,
+				E815E299BDCF449DE37569D4 /* TranscriptSegment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D0EF0DE6B362456094F259EB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				853DAE9CF6777CB3ACDE4D1F /* MenuBarContentView.swift */,
+				BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */,
+				3EC3FA441BB6E4D7E14051C4 /* SpeakerColor.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E5AEB20539AD5951D0B81578 = {
+			isa = PBXGroup;
+			children = (
+				59F91210DF4EA65164E52539 /* EarBud */,
+				856004BEF716F6C9E30831CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E5EA1492460E21BED1D59C22 /* Pipeline */ = {
+			isa = PBXGroup;
+			children = (
+				2CDDBE9E2917C3D8BFE2875F /* ConversationPipeline.swift */,
+			);
+			path = Pipeline;
+			sourceTree = "<group>";
+		};
+		F5798B8AF737C9CFA9E86A82 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				366A3F6EB88D9B4B99404FA2 /* SessionStore.swift */,
+				7E58FDB09B43054BE26C8C2D /* UserProfile.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50D2D6E25950FA4335C6DCB4 /* EarBud */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1457F1BA11CC86755F75D2F7 /* Build configuration list for PBXNativeTarget "EarBud" */;
+			buildPhases = (
+				74B6CBD006B4AA596BE384DE /* Sources */,
+				37CA000656375B10A1487750 /* Resources */,
+				C9035A9ABA1964ACB0A78839 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EarBud;
+			packageProductDependencies = (
+				D7C7BCFC71E852BF45DFC2BD /* FluidAudio */,
+			);
+			productName = EarBud;
+			productReference = 19815A70FBCA41C29B2DFEF7 /* EarBud.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E929EFC82775A2F1013E3B1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					50D2D6E25950FA4335C6DCB4 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F9B42AD6991092D5C5D3E2BC /* Build configuration list for PBXProject "EarBud" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E5AEB20539AD5951D0B81578;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3F048D6AF4F0AB1B6A4C13C4 /* XCRemoteSwiftPackageReference "FluidAudio" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 856004BEF716F6C9E30831CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50D2D6E25950FA4335C6DCB4 /* EarBud */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		37CA000656375B10A1487750 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A754BA24CD241B40AFBC32D8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74B6CBD006B4AA596BE384DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7F477A6C4B4DE709F6D0D1D /* ActionItem.swift in Sources */,
+				6950E1490A1400F498342378 /* AudioCaptureEngine.swift in Sources */,
+				1E2AEA8D7116E9B5EFFF2D2F /* AudioMixer.swift in Sources */,
+				E79A566D4A492C7451C5CDA5 /* CalendarWriter.swift in Sources */,
+				7C29F6D678AE621029233E55 /* ConversationAnalyzer.swift in Sources */,
+				71C35DBEB13E52501DD0345B /* ConversationPipeline.swift in Sources */,
+				12F080C4E228FB4261378BB7 /* ConversationSession.swift in Sources */,
+				0DC0DAC71CDDD343C25F07CC /* DetectedEvent.swift in Sources */,
+				835E067E5054881C6DABB646 /* EarBudApp.swift in Sources */,
+				C0B308A767A6DF339B8B12C5 /* LiveTranscriber.swift in Sources */,
+				D4FE5E753CC9D632C4A52D0B /* MenuBarContentView.swift in Sources */,
+				003D4B809762E0B4C9E1FC4C /* NotesWriter.swift in Sources */,
+				35CA7D86A39D9D395CD2A148 /* SessionDetailView.swift in Sources */,
+				612D52B87F72C83DA2B2EFE9 /* SessionStore.swift in Sources */,
+				5E035947B6A794C24A484874 /* Speaker.swift in Sources */,
+				A3E5F5B2D7A748CF6F87D834 /* SpeakerColor.swift in Sources */,
+				290B56EE34384AF655F99202 /* SpeakerDiarizer.swift in Sources */,
+				AB2E763131019FAF38798CD7 /* SpeakerNameDetector.swift in Sources */,
+				3BC6EADA90BE3CA2C9824E65 /* SystemAudioTapEngine.swift in Sources */,
+				10BD2814566BF8997C30273E /* TranscriptSegment.swift in Sources */,
+				B8F864B716E9DFA19C046750 /* UserProfile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3CD598C9541C2B8302236BB2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		62F3940F96DA7EB7A7C97C6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EarBud/EarBud.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EarBud/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kailum.earbud;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		6478FC3E342B67951A84204E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EarBud/EarBud.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = EarBud/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kailum.earbud;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		E34CCD5C5F8DD1C6822A6D04 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_HARDENED_RUNTIME = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1457F1BA11CC86755F75D2F7 /* Build configuration list for PBXNativeTarget "EarBud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				62F3940F96DA7EB7A7C97C6A /* Debug */,
+				6478FC3E342B67951A84204E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F9B42AD6991092D5C5D3E2BC /* Build configuration list for PBXProject "EarBud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E34CCD5C5F8DD1C6822A6D04 /* Debug */,
+				3CD598C9541C2B8302236BB2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F048D6AF4F0AB1B6A4C13C4 /* XCRemoteSwiftPackageReference "FluidAudio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/FluidInference/FluidAudio";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D7C7BCFC71E852BF45DFC2BD /* FluidAudio */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F048D6AF4F0AB1B6A4C13C4 /* XCRemoteSwiftPackageReference "FluidAudio" */;
+			productName = FluidAudio;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8E929EFC82775A2F1013E3B1 /* Project object */;
+}
