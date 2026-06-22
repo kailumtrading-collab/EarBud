@@ -11,6 +11,7 @@ struct ConversationSession: Identifiable, Codable, Hashable {
     var actionItems: [ActionItem] = []
     var nameDetectionNotices: [String] = []
     var savedToNotes: Bool = false
+    var analyzedWithIntelligence: Bool = false
 
     var title: String {
         let formatter = DateFormatter()

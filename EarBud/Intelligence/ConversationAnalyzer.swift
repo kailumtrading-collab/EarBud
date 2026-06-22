@@ -79,6 +79,7 @@ enum ConversationAnalyzer {
 
     private static func apply(_ analysis: ConversationAnalysis, to session: ConversationSession) -> ConversationSession {
         var session = session
+        session.analyzedWithIntelligence = true
         session.summary = analysis.summary
         session.segments = applyCategories(to: session.segments, from: analysis.classifiedSegments)
         session.detectedEvents = analysis.detectedEvents.map {

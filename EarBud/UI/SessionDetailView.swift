@@ -17,6 +17,9 @@ struct SessionDetailView: View {
                     ProgressView().controlSize(.small)
                 } else if session.summary == nil {
                     Button("Analyze") { analyze() }
+                } else if !session.analyzedWithIntelligence {
+                    Button("Re-analyze") { analyze() }
+                        .help("This session was summarized with a basic fallback. Re-run now that Apple Intelligence may be available.")
                 }
                 Button("Done") { dismiss() }
             }

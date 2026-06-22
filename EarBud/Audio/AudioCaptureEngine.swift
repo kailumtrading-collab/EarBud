@@ -7,6 +7,7 @@ final class AudioCaptureEngine {
     private let engine = AVAudioEngine()
     private var continuations: [AsyncStream<AVAudioPCMBuffer>.Continuation] = []
     private(set) var isRunning = false
+    private var configChangeObserver: NSObjectProtocol?
 
     var inputFormat: AVAudioFormat {
         engine.inputNode.outputFormat(forBus: 0)
@@ -20,6 +21,39 @@ final class AudioCaptureEngine {
 
     func start() throws {
         guard !isRunning else { return }
+        installTap()
+        engine.prepare()
+        try engine.start()
+        isRunning = true
+
+        // Switching input devices mid-recording (e.g. AirPods connecting or
+        // disconnecting) changes the input node's native format. The engine
+        // tears itself down when that happens, so without reinstalling the
+        // tap and restarting here, capture would silently go dead until the
+        // next manual Record/Stop.
+        configChangeObserver = NotificationCenter.default.addObserver(
+            forName: .AVAudioEngineConfigurationChange, object: engine, queue: nil
+        ) { [weak self] _ in
+            self?.handleConfigurationChange()
+        }
+    }
+
+    func stop() {
+        guard isRunning else { return }
+        if let configChangeObserver {
+            NotificationCenter.default.removeObserver(configChangeObserver)
+            self.configChangeObserver = nil
+        }
+        engine.inputNode.removeTap(onBus: 0)
+        engine.stop()
+        isRunning = false
+        for continuation in continuations {
+            continuation.finish()
+        }
+        continuations.removeAll()
+    }
+
+    private func installTap() {
         let input = engine.inputNode
         let format = input.outputFormat(forBus: 0)
         input.installTap(onBus: 0, bufferSize: 4096, format: format) { [weak self] buffer, _ in
@@ -30,20 +64,18 @@ final class AudioCaptureEngine {
                 }
             }
         }
-        engine.prepare()
-        try engine.start()
-        isRunning = true
     }
 
-    func stop() {
+    private func handleConfigurationChange() {
         guard isRunning else { return }
         engine.inputNode.removeTap(onBus: 0)
-        engine.stop()
-        isRunning = false
-        for continuation in continuations {
-            continuation.finish()
+        installTap()
+        engine.prepare()
+        do {
+            try engine.start()
+        } catch {
+            print("AudioCaptureEngine: failed to restart after configuration change: \(error)")
         }
-        continuations.removeAll()
     }
 }
 
