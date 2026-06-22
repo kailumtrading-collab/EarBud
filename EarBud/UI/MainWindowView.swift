@@ -32,16 +32,6 @@ struct MainWindowView: View {
 
     private var sidebar: some View {
         VStack(alignment: .leading, spacing: 0) {
-            HStack(spacing: 8) {
-                Image("EarBudLogo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 28, height: 28)
-                Text("EarBud").font(.headline)
-            }
-            .padding(.horizontal, 12)
-            .padding(.top, 12)
-
             RecordingControlBar(pipeline: pipeline) { session in
                 sessionStore.save(session)
                 selection = session.id
@@ -82,6 +72,12 @@ struct MainWindowView: View {
         }
         .frame(minWidth: 240)
         .toolbar {
+            ToolbarItem {
+                Image("EarBudLogo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 20, height: 20)
+            }
             ToolbarItem {
                 Menu {
                     Button("Set Your Name…") {
