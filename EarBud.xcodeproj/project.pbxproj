@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		003D4B809762E0B4C9E1FC4C /* NotesWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C43A7AAEF1A191B0C8BE16 /* NotesWriter.swift */; };
+		01071CB7E2065C95B9243CD8 /* MainWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2707B09E6F9376A6507F0D64 /* MainWindowView.swift */; };
+		076DFFC329F92EF82F4DF4A2 /* LiveTranscriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E35B2A9BD6639C4044179F72 /* LiveTranscriptView.swift */; };
 		0DC0DAC71CDDD343C25F07CC /* DetectedEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9069A9CC31E9243A440D46 /* DetectedEvent.swift */; };
 		10BD2814566BF8997C30273E /* TranscriptSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E815E299BDCF449DE37569D4 /* TranscriptSegment.swift */; };
 		12F080C4E228FB4261378BB7 /* ConversationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2208C5AA7A26AA0481722 /* ConversationSession.swift */; };
@@ -27,14 +29,15 @@
 		AB2E763131019FAF38798CD7 /* SpeakerNameDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747593E0151DE55EF1D804FA /* SpeakerNameDetector.swift */; };
 		B8F864B716E9DFA19C046750 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E58FDB09B43054BE26C8C2D /* UserProfile.swift */; };
 		C0B308A767A6DF339B8B12C5 /* LiveTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C27B384FA780F9A58D337E /* LiveTranscriber.swift */; };
-		D4FE5E753CC9D632C4A52D0B /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853DAE9CF6777CB3ACDE4D1F /* MenuBarContentView.swift */; };
 		E79A566D4A492C7451C5CDA5 /* CalendarWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */; };
 		E7F477A6C4B4DE709F6D0D1D /* ActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D336BE6E1656542F06F5EB /* ActionItem.swift */; };
+		EB0815D321CDC8324F7624D1 /* RecordingControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7877C401E6E48BF256A3E67 /* RecordingControlBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		19815A70FBCA41C29B2DFEF7 /* EarBud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EarBud.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EBB6F91D3D0612B49D08FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		2707B09E6F9376A6507F0D64 /* MainWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowView.swift; sourceTree = "<group>"; };
 		2CDDBE9E2917C3D8BFE2875F /* ConversationPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationPipeline.swift; sourceTree = "<group>"; };
 		31C8F93A9CD55F69CBBAB6A3 /* Speaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		34F2208C5AA7A26AA0481722 /* ConversationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationSession.swift; sourceTree = "<group>"; };
@@ -49,13 +52,14 @@
 		79D336BE6E1656542F06F5EB /* ActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionItem.swift; sourceTree = "<group>"; };
 		7AAC61E70CB11D6B3753A1C4 /* SpeakerDiarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerDiarizer.swift; sourceTree = "<group>"; };
 		7E58FDB09B43054BE26C8C2D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		853DAE9CF6777CB3ACDE4D1F /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
 		88510C26234A5B3795FD82DD /* EarBud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarBud.entitlements; sourceTree = "<group>"; };
 		8E3B40A625D2D43F639CA543 /* ConversationAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAnalyzer.swift; sourceTree = "<group>"; };
 		A9C43A7AAEF1A191B0C8BE16 /* NotesWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWriter.swift; sourceTree = "<group>"; };
+		B7877C401E6E48BF256A3E67 /* RecordingControlBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingControlBar.swift; sourceTree = "<group>"; };
 		BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionDetailView.swift; sourceTree = "<group>"; };
 		C4D706EDE693458408FC59D7 /* SystemAudioTapEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemAudioTapEngine.swift; sourceTree = "<group>"; };
 		D8A2EFDBB55CC25B089AB178 /* AudioMixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMixer.swift; sourceTree = "<group>"; };
+		E35B2A9BD6639C4044179F72 /* LiveTranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptView.swift; sourceTree = "<group>"; };
 		E815E299BDCF449DE37569D4 /* TranscriptSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptSegment.swift; sourceTree = "<group>"; };
 		FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,7 +163,9 @@
 		D0EF0DE6B362456094F259EB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				853DAE9CF6777CB3ACDE4D1F /* MenuBarContentView.swift */,
+				E35B2A9BD6639C4044179F72 /* LiveTranscriptView.swift */,
+				2707B09E6F9376A6507F0D64 /* MainWindowView.swift */,
+				B7877C401E6E48BF256A3E67 /* RecordingControlBar.swift */,
 				BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */,
 				3EC3FA441BB6E4D7E14051C4 /* SpeakerColor.swift */,
 			);
@@ -276,8 +282,10 @@
 				0DC0DAC71CDDD343C25F07CC /* DetectedEvent.swift in Sources */,
 				835E067E5054881C6DABB646 /* EarBudApp.swift in Sources */,
 				C0B308A767A6DF339B8B12C5 /* LiveTranscriber.swift in Sources */,
-				D4FE5E753CC9D632C4A52D0B /* MenuBarContentView.swift in Sources */,
+				076DFFC329F92EF82F4DF4A2 /* LiveTranscriptView.swift in Sources */,
+				01071CB7E2065C95B9243CD8 /* MainWindowView.swift in Sources */,
 				003D4B809762E0B4C9E1FC4C /* NotesWriter.swift in Sources */,
+				EB0815D321CDC8324F7624D1 /* RecordingControlBar.swift in Sources */,
 				35CA7D86A39D9D395CD2A148 /* SessionDetailView.swift in Sources */,
 				612D52B87F72C83DA2B2EFE9 /* SessionStore.swift in Sources */,
 				5E035947B6A794C24A484874 /* Speaker.swift in Sources */,

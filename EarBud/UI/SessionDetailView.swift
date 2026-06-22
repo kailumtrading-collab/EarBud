@@ -3,6 +3,7 @@ import SwiftUI
 struct SessionDetailView: View {
     @State var session: ConversationSession
     @ObservedObject var sessionStore: SessionStore
+    var showsDoneButton = true
 
     @State private var isAnalyzing = false
     @State private var statusMessage: String?
@@ -21,7 +22,9 @@ struct SessionDetailView: View {
                     Button("Re-analyze") { analyze() }
                         .help("This session was summarized with a basic fallback. Re-run now that Apple Intelligence may be available.")
                 }
-                Button("Done") { dismiss() }
+                if showsDoneButton {
+                    Button("Done") { dismiss() }
+                }
             }
             .padding(12)
 
@@ -78,7 +81,7 @@ struct SessionDetailView: View {
                 .padding(12)
             }
         }
-        .frame(width: 480, height: 560)
+        .frame(minWidth: 420, maxWidth: .infinity, minHeight: 360, maxHeight: .infinity)
     }
 
     private func sectionHeader(_ title: String) -> some View {

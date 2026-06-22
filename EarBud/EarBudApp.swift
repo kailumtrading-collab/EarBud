@@ -13,9 +13,9 @@ struct EarBudApp: App {
     }
 
     var body: some Scene {
-        MenuBarExtra("EarBud", systemImage: "waveform") {
-            MenuBarContentView(pipeline: pipeline, sessionStore: sessionStore, userProfile: userProfile)
+        WindowGroup {
+            MainWindowView(pipeline: pipeline, sessionStore: sessionStore, userProfile: userProfile)
         }
-        .menuBarExtraStyle(.window)
+        .defaultSize(width: 760, height: 560)
     }
 }

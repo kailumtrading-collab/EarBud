@@ -26,7 +26,6 @@ targets:
     info:
       path: EarBud/Info.plist
       properties:
-        LSUIElement: true
         NSMicrophoneUsageDescription: "EarBud listens to in-person conversations so it can transcribe them."
         NSSpeechRecognitionUsageDescription: "EarBud transcribes conversation audio on-device."
         NSCalendarsFullAccessUsageDescription: "EarBud can add detected meetings and events to your Calendar."
