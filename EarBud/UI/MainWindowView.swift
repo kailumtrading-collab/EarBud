@@ -76,7 +76,7 @@ struct MainWindowView: View {
                 Image("EarBudLogo")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 20, height: 20)
+                    .frame(width: 26, height: 26)
             }
             ToolbarItem {
                 Menu {
