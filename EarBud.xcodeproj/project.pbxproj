@@ -29,6 +29,7 @@
 		AB2E763131019FAF38798CD7 /* SpeakerNameDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747593E0151DE55EF1D804FA /* SpeakerNameDetector.swift */; };
 		B8F864B716E9DFA19C046750 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E58FDB09B43054BE26C8C2D /* UserProfile.swift */; };
 		C0B308A767A6DF339B8B12C5 /* LiveTranscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C27B384FA780F9A58D337E /* LiveTranscriber.swift */; };
+		E6960EB9EA5DFA148F534DD6 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86217E2DE405786A64339661 /* OnboardingView.swift */; };
 		E79A566D4A492C7451C5CDA5 /* CalendarWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */; };
 		E7F477A6C4B4DE709F6D0D1D /* ActionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D336BE6E1656542F06F5EB /* ActionItem.swift */; };
 		EB0815D321CDC8324F7624D1 /* RecordingControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7877C401E6E48BF256A3E67 /* RecordingControlBar.swift */; };
@@ -52,6 +53,7 @@
 		79D336BE6E1656542F06F5EB /* ActionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionItem.swift; sourceTree = "<group>"; };
 		7AAC61E70CB11D6B3753A1C4 /* SpeakerDiarizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerDiarizer.swift; sourceTree = "<group>"; };
 		7E58FDB09B43054BE26C8C2D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		86217E2DE405786A64339661 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		88510C26234A5B3795FD82DD /* EarBud.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EarBud.entitlements; sourceTree = "<group>"; };
 		8E3B40A625D2D43F639CA543 /* ConversationAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationAnalyzer.swift; sourceTree = "<group>"; };
 		A9C43A7AAEF1A191B0C8BE16 /* NotesWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesWriter.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				E35B2A9BD6639C4044179F72 /* LiveTranscriptView.swift */,
 				2707B09E6F9376A6507F0D64 /* MainWindowView.swift */,
+				86217E2DE405786A64339661 /* OnboardingView.swift */,
 				B7877C401E6E48BF256A3E67 /* RecordingControlBar.swift */,
 				BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */,
 				3EC3FA441BB6E4D7E14051C4 /* SpeakerColor.swift */,
@@ -285,6 +288,7 @@
 				076DFFC329F92EF82F4DF4A2 /* LiveTranscriptView.swift in Sources */,
 				01071CB7E2065C95B9243CD8 /* MainWindowView.swift in Sources */,
 				003D4B809762E0B4C9E1FC4C /* NotesWriter.swift in Sources */,
+				E6960EB9EA5DFA148F534DD6 /* OnboardingView.swift in Sources */,
 				EB0815D321CDC8324F7624D1 /* RecordingControlBar.swift in Sources */,
 				35CA7D86A39D9D395CD2A148 /* SessionDetailView.swift in Sources */,
 				612D52B87F72C83DA2B2EFE9 /* SessionStore.swift in Sources */,

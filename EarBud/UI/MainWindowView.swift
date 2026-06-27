@@ -29,6 +29,12 @@ struct MainWindowView: View {
             detail
         }
         .searchable(text: $searchQuery, placement: .sidebar, prompt: "Search conversations")
+        .sheet(isPresented: Binding(
+            get: { !userProfile.hasSeenOnboarding },
+            set: { if !$0 { userProfile.hasSeenOnboarding = true } }
+        )) {
+            OnboardingView(userProfile: userProfile)
+        }
         .alert("Your Name", isPresented: $isEditingName) {
             TextField("Name", text: $nameDraft)
             Button("Save") {
