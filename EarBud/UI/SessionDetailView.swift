@@ -134,15 +134,17 @@ struct SessionDetailView: View {
         return VStack(alignment: .leading, spacing: 4) {
             ForEach(session.rankedSpeakers) { speaker in
                 let percent = Int((speaker.totalTalkTime / totalTalkTime) * 100)
-                HStack(spacing: 4) {
-                    Circle()
-                        .fill(SpeakerColor.color(for: speaker.id))
-                        .frame(width: 7, height: 7)
-                    Text("\(speaker.displayName) — \(percent)% of talk time")
-                        .font(.callout)
+                SpeakerRow(speaker: speaker, percent: percent) { newName in
+                    renameSpeaker(speaker.id, to: newName)
                 }
             }
         }
+    }
+
+    private func renameSpeaker(_ speakerId: String, to name: String) {
+        guard let index = session.speakers.firstIndex(where: { $0.id == speakerId }) else { return }
+        session.speakers[index].displayName = name
+        sessionStore.save(session)
     }
 
     private var transcriptView: some View {
@@ -320,5 +322,44 @@ struct SessionDetailView: View {
         } catch {
             statusMessage = "Couldn't save to Notes: \(error.localizedDescription)"
         }
+    }
+}
+
+private struct SpeakerRow: View {
+    let speaker: Speaker
+    let percent: Int
+    let onRename: (String) -> Void
+
+    @State private var draft: String
+    @FocusState private var isFocused: Bool
+
+    init(speaker: Speaker, percent: Int, onRename: @escaping (String) -> Void) {
+        self.speaker = speaker
+        self.percent = percent
+        self.onRename = onRename
+        _draft = State(initialValue: speaker.displayName)
+    }
+
+    var body: some View {
+        HStack(spacing: 4) {
+            Circle()
+                .fill(SpeakerColor.color(for: speaker.id))
+                .frame(width: 7, height: 7)
+            TextField("Name", text: $draft)
+                .textFieldStyle(.plain)
+                .font(.callout)
+                .focused($isFocused)
+                .onSubmit { save() }
+                .onChange(of: isFocused) { _, focused in if !focused { save() } }
+            Text("— \(percent)% of talk time")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+        }
+    }
+
+    private func save() {
+        let trimmed = draft.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, trimmed != speaker.displayName else { return }
+        onRename(trimmed)
     }
 }
