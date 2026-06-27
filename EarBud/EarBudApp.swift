@@ -1,4 +1,5 @@
 import SwiftUI
+import UserNotifications
 
 @main
 struct EarBudApp: App {
@@ -10,6 +11,10 @@ struct EarBudApp: App {
         let profile = UserProfile()
         _userProfile = StateObject(wrappedValue: profile)
         _pipeline = StateObject(wrappedValue: ConversationPipeline(userProfile: profile))
+        Task {
+            try? await UNUserNotificationCenter.current()
+                .requestAuthorization(options: [.alert, .sound])
+        }
     }
 
     var body: some Scene {

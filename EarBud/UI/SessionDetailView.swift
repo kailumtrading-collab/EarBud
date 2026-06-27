@@ -1,5 +1,6 @@
 import SwiftUI
 import UniformTypeIdentifiers
+import UserNotifications
 
 struct SessionDetailView: View {
     @State var session: ConversationSession
@@ -232,7 +233,21 @@ struct SessionDetailView: View {
             session = analyzed
             sessionStore.save(analyzed)
             isAnalyzing = false
+            sendAnalysisNotification(for: analyzed)
         }
+    }
+
+    private func sendAnalysisNotification(for session: ConversationSession) {
+        let content = UNMutableNotificationContent()
+        content.title = session.title
+        content.body = session.summary.map { String($0.prefix(120)) } ?? "Analysis complete."
+        content.sound = .default
+        let request = UNNotificationRequest(
+            identifier: session.id.uuidString,
+            content: content,
+            trigger: nil
+        )
+        UNUserNotificationCenter.current().add(request)
     }
 
     private func addToCalendar(_ event: DetectedEvent, startDate: Date) {
