@@ -11,6 +11,16 @@ struct MainWindowView: View {
     @State private var selection: ConversationSession.ID?
     @State private var isEditingName = false
     @State private var nameDraft = ""
+    @State private var searchQuery = ""
+
+    private var filteredSessions: [ConversationSession] {
+        guard !searchQuery.isEmpty else { return sessionStore.sessions }
+        let q = searchQuery.lowercased()
+        return sessionStore.sessions.filter {
+            $0.title.lowercased().contains(q) ||
+            $0.summary?.lowercased().contains(q) == true
+        }
+    }
 
     var body: some View {
         NavigationSplitView {
@@ -18,6 +28,7 @@ struct MainWindowView: View {
         } detail: {
             detail
         }
+        .searchable(text: $searchQuery, placement: .sidebar, prompt: "Search conversations")
         .alert("Your Name", isPresented: $isEditingName) {
             TextField("Name", text: $nameDraft)
             Button("Save") {
@@ -55,9 +66,12 @@ struct MainWindowView: View {
                     description: Text("Press Record to capture your first conversation.")
                 )
                 .frame(maxHeight: .infinity)
+            } else if filteredSessions.isEmpty {
+                ContentUnavailableView.search(text: searchQuery)
+                    .frame(maxHeight: .infinity)
             } else {
                 List(selection: $selection) {
-                    ForEach(sessionStore.sessions) { session in
+                    ForEach(filteredSessions) { session in
                         VStack(alignment: .leading) {
                             Text(session.title).font(.body)
                             if let summary = session.summary {
