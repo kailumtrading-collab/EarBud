@@ -18,12 +18,17 @@ struct SessionDetailView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                TextField("Title", text: $titleDraft)
-                    .font(.headline)
-                    .textFieldStyle(.plain)
-                    .focused($titleFocused)
-                    .onSubmit { saveTitle() }
-                    .onChange(of: titleFocused) { _, focused in if !focused { saveTitle() } }
+                VStack(alignment: .leading, spacing: 2) {
+                    TextField("Title", text: $titleDraft)
+                        .font(.headline)
+                        .textFieldStyle(.plain)
+                        .focused($titleFocused)
+                        .onSubmit { saveTitle() }
+                        .onChange(of: titleFocused) { _, focused in if !focused { saveTitle() } }
+                    Text(sessionSubtitle)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
                 Spacer()
                 if isAnalyzing {
                     ProgressView().controlSize(.small)
@@ -284,6 +289,12 @@ struct SessionDetailView: View {
                 statusMessage = "Couldn't add to Reminders: \(error.localizedDescription)"
             }
         }
+    }
+
+    private var sessionSubtitle: String {
+        let date = session.startedAt.formatted(date: .long, time: .shortened)
+        if let duration = session.formattedDuration { return "\(date) · \(duration)" }
+        return date
     }
 
     private func saveTitle() {
