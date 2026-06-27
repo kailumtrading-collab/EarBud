@@ -24,6 +24,7 @@
 		71C35DBEB13E52501DD0345B /* ConversationPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CDDBE9E2917C3D8BFE2875F /* ConversationPipeline.swift */; };
 		7C29F6D678AE621029233E55 /* ConversationAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B40A625D2D43F639CA543 /* ConversationAnalyzer.swift */; };
 		835E067E5054881C6DABB646 /* EarBudApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75624AD842D36F736730A1B4 /* EarBudApp.swift */; };
+		94FDFCE4416E4A073328A83E /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E02893D838A12E23B164BF /* MenuBarView.swift */; };
 		A3E5F5B2D7A748CF6F87D834 /* SpeakerColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3FA441BB6E4D7E14051C4 /* SpeakerColor.swift */; };
 		A754BA24CD241B40AFBC32D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 400415EFCB341CBCDF4C0AF1 /* Assets.xcassets */; };
 		AB2E763131019FAF38798CD7 /* SpeakerNameDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747593E0151DE55EF1D804FA /* SpeakerNameDetector.swift */; };
@@ -63,6 +64,7 @@
 		D8A2EFDBB55CC25B089AB178 /* AudioMixer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMixer.swift; sourceTree = "<group>"; };
 		E35B2A9BD6639C4044179F72 /* LiveTranscriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTranscriptView.swift; sourceTree = "<group>"; };
 		E815E299BDCF449DE37569D4 /* TranscriptSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptSegment.swift; sourceTree = "<group>"; };
+		F3E02893D838A12E23B164BF /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		FA4A5D14678CFC8A2F5449A5 /* CalendarWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 			children = (
 				E35B2A9BD6639C4044179F72 /* LiveTranscriptView.swift */,
 				2707B09E6F9376A6507F0D64 /* MainWindowView.swift */,
+				F3E02893D838A12E23B164BF /* MenuBarView.swift */,
 				86217E2DE405786A64339661 /* OnboardingView.swift */,
 				B7877C401E6E48BF256A3E67 /* RecordingControlBar.swift */,
 				BD4D65F7F12054B5FE14E7E6 /* SessionDetailView.swift */,
@@ -287,6 +290,7 @@
 				C0B308A767A6DF339B8B12C5 /* LiveTranscriber.swift in Sources */,
 				076DFFC329F92EF82F4DF4A2 /* LiveTranscriptView.swift in Sources */,
 				01071CB7E2065C95B9243CD8 /* MainWindowView.swift in Sources */,
+				94FDFCE4416E4A073328A83E /* MenuBarView.swift in Sources */,
 				003D4B809762E0B4C9E1FC4C /* NotesWriter.swift in Sources */,
 				E6960EB9EA5DFA148F534DD6 /* OnboardingView.swift in Sources */,
 				EB0815D321CDC8324F7624D1 /* RecordingControlBar.swift in Sources */,

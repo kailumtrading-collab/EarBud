@@ -13,9 +13,16 @@ struct EarBudApp: App {
     }
 
     var body: some Scene {
-        WindowGroup {
+        WindowGroup(id: "main") {
             MainWindowView(pipeline: pipeline, sessionStore: sessionStore, userProfile: userProfile)
         }
         .defaultSize(width: 760, height: 560)
+
+        MenuBarExtra {
+            MenuBarView(pipeline: pipeline, sessionStore: sessionStore)
+        } label: {
+            Image(systemName: pipeline.isRecording ? "waveform.circle.fill" : "waveform.circle")
+        }
+        .menuBarExtraStyle(.window)
     }
 }
