@@ -172,7 +172,10 @@ final class ConversationPipeline: ObservableObject {
         let isRevision: Bool
         if let last = rawChunks.last {
             let textOverlaps = chunk.text.hasPrefix(last.text) || last.text.hasPrefix(chunk.text)
-            let arrivedQuickly = now.timeIntervalSince(lastChunkReceivedAt ?? .distantPast) < 2
+            // Short window only catches revisions where the model rewrites the start of a phrase
+            // without a shared prefix (e.g. "I'll" → "I will"). 2 s was too long and merged
+            // genuinely separate back-to-back utterances into a single turn.
+            let arrivedQuickly = now.timeIntervalSince(lastChunkReceivedAt ?? .distantPast) < 0.3
             isRevision = textOverlaps || arrivedQuickly
         } else {
             isRevision = false
@@ -250,7 +253,7 @@ final class ConversationPipeline: ObservableObject {
     private func rebuildSegments() {
         var result: [TranscriptSegment] = []
         for chunk in rawChunks {
-            let speakerId = speakerId(at: (chunk.start + chunk.end) / 2)
+            let speakerId = dominantSpeaker(from: chunk.start, to: chunk.end)
             if let last = result.last, last.speakerId == speakerId {
                 result[result.count - 1].text += " " + chunk.text
                 result[result.count - 1].endTime = chunk.end
@@ -266,8 +269,29 @@ final class ConversationPipeline: ObservableObject {
         liveSegments = result
     }
 
+    /// Assigns the speaker who holds the most diarization time within [start, end].
+    /// More accurate than a midpoint lookup for chunks that span a speaker change.
+    private func dominantSpeaker(from start: TimeInterval, to end: TimeInterval) -> String {
+        var talkTime: [String: TimeInterval] = [:]
+        for segment in diarizationSegments {
+            let overlap = max(0, min(end, segment.endTime) - max(start, segment.startTime))
+            if overlap > 0 { talkTime[segment.speakerId, default: 0] += overlap }
+        }
+        return talkTime.max(by: { $0.value < $1.value })?.key ?? "Unknown"
+    }
+
     private func speakerId(at time: TimeInterval) -> String {
-        diarizationSegments.first { $0.startTime <= time && time <= $0.endTime }?.speakerId ?? "Unknown"
+        if let segment = diarizationSegments.first(where: { $0.startTime <= time && time <= $0.endTime }) {
+            return segment.speakerId
+        }
+        // Handle tiny gaps between diarization chunks (e.g. at 6 s chunk boundaries).
+        let nearest = diarizationSegments.min(by: {
+            min(abs($0.startTime - time), abs($0.endTime - time)) <
+            min(abs($1.startTime - time), abs($1.endTime - time))
+        })
+        guard let nearest else { return "Unknown" }
+        let gap = min(abs(nearest.startTime - time), abs(nearest.endTime - time))
+        return gap < 0.5 ? nearest.speakerId : "Unknown"
     }
 
     private func rebuildSpeakerTalkTime() {
