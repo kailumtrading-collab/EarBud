@@ -7,6 +7,8 @@ struct RecordingControlBar: View {
     @ObservedObject var pipeline: ConversationPipeline
     var onStopped: (ConversationSession) -> Void
 
+    @State private var recordingStartedAt: Date?
+
     var body: some View {
         HStack {
             if pipeline.isPreparing {
@@ -25,8 +27,24 @@ struct RecordingControlBar: View {
                     }
                 }
                 .keyboardShortcut(.defaultAction)
+
+                if pipeline.isRecording, let start = recordingStartedAt {
+                    TimelineView(.periodic(from: start, by: 1)) { context in
+                        Text(formatElapsed(context.date.timeIntervalSince(start)))
+                            .font(.caption.monospacedDigit())
+                            .foregroundStyle(.secondary)
+                    }
+                }
             }
             Spacer()
         }
+        .onChange(of: pipeline.isRecording) { _, isRecording in
+            recordingStartedAt = isRecording ? Date() : nil
+        }
+    }
+
+    private func formatElapsed(_ interval: TimeInterval) -> String {
+        let total = max(0, Int(interval))
+        return String(format: "%d:%02d", total / 60, total % 60)
     }
 }
