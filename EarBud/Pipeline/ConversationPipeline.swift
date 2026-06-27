@@ -14,6 +14,7 @@ final class ConversationPipeline: ObservableObject {
     @Published private(set) var speakers: [Speaker] = []
     @Published private(set) var lastNameDetection: String?
     @Published private(set) var micLevel: Float = 0
+    @Published private(set) var isCapturingSystemAudio = false
     @Published var lastError: String?
 
     private let userProfile: UserProfile
@@ -95,8 +96,9 @@ final class ConversationPipeline: ObservableObject {
 
         do {
             try systemAudioEngine.start()
+            isCapturingSystemAudio = true
         } catch {
-            // Non-fatal: still records the mic-only side of the conversation.
+            isCapturingSystemAudio = false
             print("ConversationPipeline: system audio capture unavailable: \(error)")
         }
 
@@ -139,6 +141,7 @@ final class ConversationPipeline: ObservableObject {
         guard isRecording, let startedAt = sessionStartedAt else { return nil }
         isRecording = false
         micLevel = 0
+        isCapturingSystemAudio = false
         audioEngine.onLevel = nil
         pollTask?.cancel()
         audioEngine.stop()

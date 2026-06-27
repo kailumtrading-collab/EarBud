@@ -8,6 +8,7 @@ struct LiveTranscriptView: View {
     var body: some View {
         VStack(spacing: 0) {
             micLevelBar
+            audioSourceStatus
             Divider()
             ScrollViewReader { proxy in
                 ScrollView {
@@ -40,6 +41,23 @@ struct LiveTranscriptView: View {
                 }
             }
         }
+    }
+
+    private var audioSourceStatus: some View {
+        Group {
+            if pipeline.isCapturingSystemAudio {
+                Text("Mic + system audio")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            } else {
+                Text("Mic only · enable Screen & System Audio Recording in System Settings for call audio")
+                    .font(.caption2)
+                    .foregroundStyle(.orange)
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 4)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 
     private var micLevelBar: some View {
