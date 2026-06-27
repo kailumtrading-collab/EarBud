@@ -1,4 +1,5 @@
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct SessionDetailView: View {
     @State var session: ConversationSession
@@ -73,6 +74,8 @@ struct SessionDetailView: View {
                             saveToNotes()
                         }
                         .disabled(session.savedToNotes)
+                        Button("Copy Transcript") { copyTranscript() }
+                        Button("Export…") { exportTranscript() }
                     }
                     .padding(.top, 8)
 
@@ -253,6 +256,41 @@ struct SessionDetailView: View {
                 statusMessage = "Couldn't add to Reminders: \(error.localizedDescription)"
             }
         }
+    }
+
+    private func copyTranscript() {
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(plainTextTranscript(), forType: .string)
+        statusMessage = "Transcript copied."
+    }
+
+    private func exportTranscript() {
+        let panel = NSSavePanel()
+        panel.allowedContentTypes = [UTType(filenameExtension: "md") ?? .plainText]
+        panel.nameFieldStringValue = "\(session.title).md"
+        panel.begin { response in
+            guard response == .OK, let url = panel.url else { return }
+            try? markdownTranscript().write(to: url, atomically: true, encoding: .utf8)
+        }
+    }
+
+    private func plainTextTranscript() -> String {
+        var lines = [session.title, ""]
+        if let summary = session.summary { lines += ["Summary", summary, ""] }
+        for segment in session.segments {
+            lines += [displayName(for: segment.speakerId), segment.text, ""]
+        }
+        return lines.joined(separator: "\n")
+    }
+
+    private func markdownTranscript() -> String {
+        var lines = ["# \(session.title)", ""]
+        if let summary = session.summary { lines += ["## Summary", "", summary, ""] }
+        lines += ["## Transcript", ""]
+        for segment in session.segments {
+            lines += ["**\(displayName(for: segment.speakerId))**", "", segment.text, ""]
+        }
+        return lines.joined(separator: "\n")
     }
 
     private func saveToNotes() {
