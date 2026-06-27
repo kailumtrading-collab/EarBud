@@ -48,25 +48,34 @@ struct MainWindowView: View {
 
             Divider()
 
-            List(selection: $selection) {
-                ForEach(sessionStore.sessions) { session in
-                    VStack(alignment: .leading) {
-                        Text(session.title).font(.body)
-                        if let summary = session.summary {
-                            Text(summary).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+            if sessionStore.sessions.isEmpty {
+                ContentUnavailableView(
+                    "No Conversations Yet",
+                    systemImage: "waveform",
+                    description: Text("Press Record to capture your first conversation.")
+                )
+                .frame(maxHeight: .infinity)
+            } else {
+                List(selection: $selection) {
+                    ForEach(sessionStore.sessions) { session in
+                        VStack(alignment: .leading) {
+                            Text(session.title).font(.body)
+                            if let summary = session.summary {
+                                Text(summary).font(.caption).foregroundStyle(.secondary).lineLimit(1)
+                            }
+                        }
+                        .tag(session.id)
+                        .contextMenu {
+                            Button("Delete", role: .destructive) { sessionStore.delete(session) }
                         }
                     }
-                    .tag(session.id)
-                    .contextMenu {
-                        Button("Delete", role: .destructive) { sessionStore.delete(session) }
-                    }
                 }
-            }
-            .listStyle(.sidebar)
-            .onDeleteCommand {
-                if let selection {
-                    sessionStore.delete(ids: [selection])
-                    self.selection = nil
+                .listStyle(.sidebar)
+                .onDeleteCommand {
+                    if let selection {
+                        sessionStore.delete(ids: [selection])
+                        self.selection = nil
+                    }
                 }
             }
         }
