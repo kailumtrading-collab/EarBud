@@ -10,12 +10,19 @@ struct SessionDetailView: View {
     @State private var statusMessage: String?
     @State private var eventBeingScheduled: DetectedEvent?
     @State private var pickedDate = Date()
+    @State private var titleDraft = ""
+    @FocusState private var titleFocused: Bool
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text(session.title).font(.headline)
+                TextField("Title", text: $titleDraft)
+                    .font(.headline)
+                    .textFieldStyle(.plain)
+                    .focused($titleFocused)
+                    .onSubmit { saveTitle() }
+                    .onChange(of: titleFocused) { _, focused in if !focused { saveTitle() } }
                 Spacer()
                 if isAnalyzing {
                     ProgressView().controlSize(.small)
@@ -87,6 +94,7 @@ struct SessionDetailView: View {
             }
         }
         .frame(minWidth: 420, maxWidth: .infinity, minHeight: 360, maxHeight: .infinity)
+        .onAppear { titleDraft = session.title }
         .sheet(item: $eventBeingScheduled) { event in
             schedulingSheet(for: event)
         }
@@ -256,6 +264,13 @@ struct SessionDetailView: View {
                 statusMessage = "Couldn't add to Reminders: \(error.localizedDescription)"
             }
         }
+    }
+
+    private func saveTitle() {
+        let trimmed = titleDraft.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, trimmed != session.title else { return }
+        session.customTitle = trimmed
+        sessionStore.save(session)
     }
 
     private func copyTranscript() {

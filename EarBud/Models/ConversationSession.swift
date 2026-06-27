@@ -10,10 +10,12 @@ struct ConversationSession: Identifiable, Codable, Hashable {
     var detectedEvents: [DetectedEvent] = []
     var actionItems: [ActionItem] = []
     var nameDetectionNotices: [String] = []
+    var customTitle: String?
     var savedToNotes: Bool = false
     var analyzedWithIntelligence: Bool = false
 
     var title: String {
+        if let custom = customTitle, !custom.isEmpty { return custom }
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
