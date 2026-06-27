@@ -94,7 +94,10 @@ struct SessionDetailView: View {
             }
         }
         .frame(minWidth: 420, maxWidth: .infinity, minHeight: 360, maxHeight: .infinity)
-        .onAppear { titleDraft = session.title }
+        .onAppear {
+            titleDraft = session.title
+            if session.summary == nil { analyze() }
+        }
         .sheet(item: $eventBeingScheduled) { event in
             schedulingSheet(for: event)
         }

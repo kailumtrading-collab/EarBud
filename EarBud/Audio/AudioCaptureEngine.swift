@@ -9,6 +9,8 @@ final class AudioCaptureEngine {
     private(set) var isRunning = false
     private var configChangeObserver: NSObjectProtocol?
 
+    var onLevel: ((Float) -> Void)?
+
     var inputFormat: AVAudioFormat {
         engine.inputNode.outputFormat(forBus: 0)
     }
@@ -63,7 +65,16 @@ final class AudioCaptureEngine {
                     continuation.yield(copy)
                 }
             }
+            self.onLevel?(Self.rms(buffer))
         }
+    }
+
+    private static func rms(_ buffer: AVAudioPCMBuffer) -> Float {
+        guard let channel = buffer.floatChannelData?[0], buffer.frameLength > 0 else { return 0 }
+        let frames = Int(buffer.frameLength)
+        var sum: Float = 0
+        for i in 0..<frames { sum += channel[i] * channel[i] }
+        return sqrt(sum / Float(frames))
     }
 
     private func handleConfigurationChange() {

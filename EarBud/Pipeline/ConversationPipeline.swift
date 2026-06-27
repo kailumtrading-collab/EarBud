@@ -13,6 +13,7 @@ final class ConversationPipeline: ObservableObject {
     @Published private(set) var liveSegments: [TranscriptSegment] = []
     @Published private(set) var speakers: [Speaker] = []
     @Published private(set) var lastNameDetection: String?
+    @Published private(set) var micLevel: Float = 0
     @Published var lastError: String?
 
     private let userProfile: UserProfile
@@ -80,6 +81,10 @@ final class ConversationPipeline: ObservableObject {
             }
         }
 
+        audioEngine.onLevel = { [weak self] level in
+            Task { @MainActor [weak self] in self?.micLevel = level }
+        }
+
         do {
             try audioEngine.start()
             try await transcriber.start()
@@ -133,6 +138,8 @@ final class ConversationPipeline: ObservableObject {
     func stop() async -> ConversationSession? {
         guard isRecording, let startedAt = sessionStartedAt else { return nil }
         isRecording = false
+        micLevel = 0
+        audioEngine.onLevel = nil
         pollTask?.cancel()
         audioEngine.stop()
         systemAudioEngine.stop()

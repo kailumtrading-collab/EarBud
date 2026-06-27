@@ -6,36 +6,53 @@ struct LiveTranscriptView: View {
     @ObservedObject var pipeline: ConversationPipeline
 
     var body: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                VStack(alignment: .leading, spacing: 8) {
-                    if let notice = pipeline.lastNameDetection {
-                        Text("🏷️ \(notice)")
-                            .font(.caption.bold())
-                            .padding(6)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color.yellow.opacity(0.25))
-                            .cornerRadius(4)
-                    }
-                    if pipeline.liveSegments.isEmpty {
-                        Text(pipeline.isPreparing ? "Preparing…" : "Listening…")
-                            .foregroundStyle(.secondary)
-                    }
-                    ForEach(pipeline.liveSegments) { segment in
-                        VStack(alignment: .leading, spacing: 2) {
-                            speakerLabel(for: segment.speakerId)
-                            Text(segment.text)
+        VStack(spacing: 0) {
+            micLevelBar
+            Divider()
+            ScrollViewReader { proxy in
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 8) {
+                        if let notice = pipeline.lastNameDetection {
+                            Text("🏷️ \(notice)")
+                                .font(.caption.bold())
+                                .padding(6)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .background(Color.yellow.opacity(0.25))
+                                .cornerRadius(4)
                         }
+                        if pipeline.liveSegments.isEmpty {
+                            Text(pipeline.isPreparing ? "Preparing…" : "Listening…")
+                                .foregroundStyle(.secondary)
+                        }
+                        ForEach(pipeline.liveSegments) { segment in
+                            VStack(alignment: .leading, spacing: 2) {
+                                speakerLabel(for: segment.speakerId)
+                                Text(segment.text)
+                            }
+                        }
+                        Color.clear.frame(height: 1).id("bottom")
                     }
-                    Color.clear.frame(height: 1).id("bottom")
+                    .padding(12)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .padding(12)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .onChange(of: pipeline.liveSegments.count) { _, _ in
-                proxy.scrollTo("bottom")
+                .onChange(of: pipeline.liveSegments.count) { _, _ in
+                    proxy.scrollTo("bottom")
+                }
             }
         }
+    }
+
+    private var micLevelBar: some View {
+        GeometryReader { geo in
+            let db = 20 * log10f(max(pipeline.micLevel, 1e-6))
+            let normalized = max(0, min(1, (db + 50) / 45))
+            RoundedRectangle(cornerRadius: 1)
+                .fill(Color.accentColor.opacity(0.7))
+                .frame(width: geo.size.width * CGFloat(normalized))
+                .animation(.linear(duration: 0.05), value: normalized)
+        }
+        .frame(height: 3)
+        .background(Color.secondary.opacity(0.12))
     }
 
     private func speakerLabel(for speakerId: String) -> some View {
