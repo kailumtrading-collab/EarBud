@@ -78,8 +78,16 @@ struct MainWindowView: View {
             } else {
                 List(selection: $selection) {
                     ForEach(filteredSessions) { session in
-                        VStack(alignment: .leading) {
-                            Text(session.title).font(.body)
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack {
+                                Text(session.title).font(.body)
+                                Spacer()
+                                if let duration = session.formattedDuration {
+                                    Text(duration)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
                             if let summary = session.summary {
                                 Text(summary).font(.caption).foregroundStyle(.secondary).lineLimit(1)
                             }

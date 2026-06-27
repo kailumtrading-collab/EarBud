@@ -25,4 +25,15 @@ struct ConversationSession: Identifiable, Codable, Hashable {
     var rankedSpeakers: [Speaker] {
         speakers.sorted { $0.totalTalkTime > $1.totalTalkTime }
     }
+
+    var formattedDuration: String? {
+        guard let end = endedAt else { return nil }
+        let total = max(0, Int(end.timeIntervalSince(startedAt)))
+        let h = total / 3600
+        let m = (total % 3600) / 60
+        let s = total % 60
+        if h > 0 { return "\(h)h \(m)m" }
+        if m > 0 { return "\(m)m \(s)s" }
+        return "\(s)s"
+    }
 }
